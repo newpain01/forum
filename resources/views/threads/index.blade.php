@@ -13,7 +13,12 @@
                         <a href="{{ $thread->path() }}">
                             <h4>{{ $thread->title }}</h4>
                         </a>
-                        <div class="body">{{ $thread->body }}</div>
+                        <a href="#">{{ $thread->creator->name }}</a> posted {{ $thread->created_at->diffForHumans() }}
+
+                        <div>
+                            {{$thread->replies->count()}} Replies
+                        </div>
+                        <div class="body">{{ str_limit($thread->body, 200) }}</div>
                     </article>
 
                     <hr>
