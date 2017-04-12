@@ -15,10 +15,10 @@ class CreateThreadsTest extends TestCase
     	$this->withExceptionHandling();
 
 		$this->get('/threads/create')
-    		 ->assertRedirect('/login');
+             ->assertRedirect('/login');
 
 		$this->post('/threads')
-    		 ->assertRedirect('/login');
+             ->assertRedirect('/login');
     }
 
     /** @test */
