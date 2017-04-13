@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-8">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     {{ $thread->title }} by <a href="#">{{ $thread->creator->name }}</a>
@@ -13,20 +13,16 @@
                     {{ $thread->body }}
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            @foreach ($thread->replies as $reply)
+            @foreach ($replies as $reply)
                 @include('threads.reply')
             @endforeach
-        </div>
-    </div>
 
-    @if (auth()->check())
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
+            <div class="text-center">
+            {{ $replies->links() }}
+            </div>
+
+            @if (auth()->check())
                 <form method="POST" action="{{ $thread->path() . '/replies' }}">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -34,11 +30,21 @@
                     </div>
                     <button type="submit" class="btn btn-default">Reply</button>
                 </form>
-            </div>
-        </div>
-    @else
-    <p class="text-center">Please <a href="{{ route('login') }}">sign in</a> to participate in this discussion.</p>
-    @endif
+            @else
+            <p class="text-center">Please <a href="{{ route('login') }}">sign in</a> to participate in this discussion.</p>
+            @endif
 
+        </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <img src="http://placehold.it/330x500">
+                </div>
+            </div>        
+        </div>
+
+
+    </div>
 </div>
 @endsection
