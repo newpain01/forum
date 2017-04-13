@@ -10,14 +10,18 @@
                 <div class="panel-body">
                     @foreach ($threads as $thread)
                     <article>
-                        <a href="{{ $thread->path() }}">
-                            <h4>{{ $thread->title }}</h4>
-                        </a>
-                        <a href="#">{{ $thread->creator->name }}</a> posted {{ $thread->created_at->diffForHumans() }}
+                        <div class="level">
+                        <h4 class="flex">
+                            <a href="{{ $thread->path() }}">
+                                {{ $thread->title }}
+                            </a>
+                        </h4>
 
-                        <div>
+                        <a href="{{ $thread->path() }}">
                             {{ $thread->replies_count }} {{ str_plural('Reply', $thread->replies_count) }}
+                        </a>
                         </div>
+
                         <div class="body">{{ str_limit($thread->body, 200) }}</div>
                     </article>
 
@@ -35,14 +39,13 @@
             </div>        
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 right">
             <div class="panel panel-default">
                 <div class="panel-body">
                     <img src="http://placehold.it/330x500">
                 </div>
             </div>        
-        </div
->
+        </div>
     </div>
 </div>
 @endsection

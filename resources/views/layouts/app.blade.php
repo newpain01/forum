@@ -19,8 +19,15 @@
             'csrfToken' => csrf_token(),
         ]) !!};
     </script>
+
+    <style>
+        body { padding-bottom: 100px; }
+        .level { display: flex; align-items: center; }
+        .flex { flex: 1; }
+        .right { float: right;}
+    </style>
 </head>
-<body style="padding-bottom: 100px;">
+<body>
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
@@ -36,7 +43,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{ config('app.name', 'Forum') }}
                     </a>
                 </div>
 
@@ -51,6 +58,7 @@
                             @if(auth()->check())
                                 <li><a href="/threads?by={{ auth()->user()->name }}">My Threads</a></li>
                             @endif
+                            <li><a href="/threads?popular=1">Popular Threads</a></li>
                         </ul>
                         </li>
 
